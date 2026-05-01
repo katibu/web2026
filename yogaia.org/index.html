@@ -1,0 +1,1393 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yogaia BCN · Home Prototype</title>
+  <meta name="description" content="Prototype HTML de la home de Yogaia BCN basat en el contingut validat i preparat per adaptar-se després a Elementor.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap');
+
+    :root {
+      --bg: #ededE1;
+      --surface: #f6f2e8;
+      --surface-strong: #fffdf9;
+      --surface-soft: #e4d9c8;
+      --text: #262821;
+      --text-soft: #5f5a52;
+      --line: #d8d2c4;
+      --neutral: #938774;
+      --moss: #757b57;
+      --moss-deep: #596042;
+      --cta: #e9c85d;
+      --cta-hover: #c9786b;
+      --shadow: 0 20px 48px rgba(50, 43, 35, 0.08);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --content: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Open Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(233, 200, 93, 0.08), transparent 16%),
+        radial-gradient(circle at right top, rgba(117, 123, 87, 0.10), transparent 18%),
+        linear-gradient(180deg, #f1efe6 0%, #edede1 100%);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--content));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      margin-top: 2em;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--neutral);
+      font: 700 12px/1 "Poppins", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--cta);
+      box-shadow: 0 0 0 6px rgba(233, 200, 93, 0.14);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      letter-spacing: -0.03em;
+      line-height: 1.06;
+    }
+
+    h1 {
+      font-size: 74px;
+      font-weight: 800;
+      width: 75%;
+      max-width: 75%;
+      white-space: nowrap;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      padding: 0;
+      transition: box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
+      background: rgba(246, 242, 232, 0.96);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(216, 210, 196, 0.82);
+      border-bottom: 1px solid rgba(216, 210, 196, 0.82);
+    }
+
+    .site-header.is-compact {
+      background: rgba(246, 242, 232, 0.98);
+      box-shadow: 0 10px 22px rgba(50, 43, 35, 0.06);
+    }
+
+    .header-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 22px;
+      min-height: 72px;
+      padding: 10px 0;
+    }
+
+    .brand {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      color: var(--text);
+      z-index: 2;
+    }
+
+    .brand-logo {
+      display: block;
+      height: 64.8px;
+      width: auto;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--text-soft);
+      font: 600 17px/1 "Poppins", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .nav-left {
+      justify-content: flex-end;
+      padding-right: 64px;
+    }
+
+    .nav-right {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      min-width: 0;
+      padding-left: 64px;
+    }
+
+    .nav-cluster {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-right .nav-cluster {
+      flex-wrap: nowrap;
+    }
+
+    .nav a {
+      transition: color 180ms ease, transform 180ms ease;
+      transform-origin: center;
+    }
+
+    .nav a:hover {
+      color: var(--moss-deep);
+      transform: scale(1.2);
+    }
+
+    .header-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-left: 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--cta);
+      color: var(--text);
+      font: 600 15px/1 "Poppins", sans-serif;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease, opacity 180ms ease;
+      opacity: 0;
+      transform: scale(0);
+      transform-origin: center;
+      pointer-events: none;
+    }
+
+    .header-cta:hover {
+      background: var(--cta-hover);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .site-header.is-compact .header-cta {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+      animation: ctaElasticIn 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+    }
+
+    @keyframes ctaElasticIn {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .lang-picker {
+      position: relative;
+    }
+
+    .lang-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font: 600 14px/1 "Poppins", sans-serif;
+      cursor: pointer;
+    }
+
+    .lang-chevron {
+      font-size: 12px;
+      color: var(--neutral);
+    }
+
+    .lang-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      min-width: 124px;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(255, 253, 249, 0.96);
+      border: 1px solid rgba(216, 210, 196, 0.92);
+      box-shadow: var(--shadow);
+      display: none;
+      gap: 8px;
+    }
+
+    .lang-picker.is-open .lang-menu {
+      display: grid;
+    }
+
+    .lang-option {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--text);
+      font: 600 14px/1 "Poppins", sans-serif;
+    }
+
+    .lang-option:hover {
+      background: rgba(233, 200, 93, 0.18);
+      color: var(--moss-deep);
+    }
+
+    .mobile-menu-button {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: 0;
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--text);
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .mobile-menu-button svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+    }
+
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      background: rgba(38, 40, 33, 0.34);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease;
+    }
+
+    .mobile-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 80;
+      width: min(88vw, 360px);
+      padding: 22px 18px 28px;
+      background: rgba(246, 242, 232, 0.98);
+      border-right: 1px solid rgba(216, 210, 196, 0.92);
+      box-shadow: 0 18px 40px rgba(50, 43, 35, 0.16);
+      transform: translateX(-100%);
+      transition: transform 220ms ease;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 22px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mobile-drawer.is-open {
+      transform: translateX(0);
+    }
+
+    .mobile-drawer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .mobile-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 0;
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--text);
+      font: 600 20px/1 "Poppins", sans-serif;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .mobile-nav a {
+      display: block;
+      padding: 14px 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--text);
+      font: 600 18px/1.2 "Poppins", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--moss-deep);
+      background: rgba(233, 200, 93, 0.16);
+    }
+
+    .mobile-drawer-bottom {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mobile-lang {
+      display: flex;
+      gap: 10px;
+    }
+
+    .mobile-lang a {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--text);
+      font: 600 14px/1 "Poppins", sans-serif;
+    }
+
+    .scroll-layer {
+      position: relative;
+      z-index: 2;
+      padding-top: 50vh;
+      pointer-events: none;
+    }
+
+    main section {
+      padding: 34px 0;
+    }
+
+    .site-header,
+    .content-stage,
+    .site-footer {
+      pointer-events: auto;
+    }
+
+    .hero {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 50vh;
+      z-index: 0;
+      padding: 0;
+      display: flex;
+      align-items: stretch;
+      background:
+        linear-gradient(180deg, rgba(38, 40, 33, 0.18), rgba(38, 40, 33, 0.42)),
+        url("practica-ioga-yogaia-barcelona.png") center bottom / cover no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 14% 16%, rgba(255, 255, 255, 0.22), transparent 16%),
+        linear-gradient(180deg, rgba(117, 123, 87, 0.08), rgba(255, 255, 255, 0));
+      pointer-events: none;
+    }
+
+    .hero-shell {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      min-height: 50vh;
+      display: grid;
+      align-items: stretch;
+      padding: 0;
+    }
+
+    .panel,
+    .feature-card,
+    .schedule-card,
+    .testimonial,
+    .cta-panel {
+      border-radius: var(--radius-xl);
+      background: rgba(255, 253, 249, 0.88);
+      border: 1px solid rgba(216, 210, 196, 0.84);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card {
+      width: 100%;
+      min-height: 50vh;
+      padding: 0 34px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .hero-middle {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-title {
+      margin-top: auto;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .hero-subtitle {
+      width: 75%;
+      max-width: 75%;
+      margin-top: 18px;
+      margin-bottom: auto;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-soft);
+      font-size: 19px;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: auto;
+      padding-top: 28px;
+    }
+
+    .hero-meta {
+      margin-top: 18px;
+      margin-bottom: 28px;
+      color: var(--neutral);
+      font: 600 14px/1.5 "Poppins", sans-serif;
+      text-align: center;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 0;
+      font: 600 15px/1 "Poppins", sans-serif;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease, border-color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: var(--cta);
+      border: 2px solid #171717;
+      color: var(--text);
+    }
+
+    .button-primary:hover {
+      background: var(--cta-hover);
+      color: #fff;
+    }
+
+    .button-secondary {
+      background: #ffffff;
+      border: 2px solid #171717;
+      color: var(--text);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255, 255, 255, 0.4);
+      color: #171717;
+    }
+
+    .button-text {
+      padding: 0;
+      min-height: auto;
+      border-radius: 0;
+      color: var(--moss-deep);
+    }
+
+    .button-text:hover {
+      color: var(--cta-hover);
+      transform: none;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .section-lead {
+      max-width: 58ch;
+      margin-top: 12px;
+      color: var(--text-soft);
+    }
+
+    .schedule-wrapper {
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+    }
+
+    .schedule-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 1fr);
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scroll-snap-type: x proximity;
+    }
+
+    .schedule-card {
+      padding: 22px;
+      scroll-snap-align: start;
+    }
+
+    .schedule-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--text);
+      font: 700 12px/1.2 "Poppins", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .schedule-card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .schedule-card p {
+      color: var(--text-soft);
+    }
+
+    .schedule-card.schedule-placeholder {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.58));
+      border-style: dashed;
+    }
+
+    .panel {
+      padding: 28px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      padding: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(117, 123, 87, 0.14);
+      color: var(--moss-deep);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font: 700 15px/1 "Poppins", sans-serif;
+    }
+
+    .feature-card p {
+      color: var(--text-soft);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .image-panel,
+    .text-panel {
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.60);
+      border: 1px solid rgba(216, 210, 196, 0.84);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .text-panel {
+      padding: 30px;
+      display: grid;
+      gap: 18px;
+      align-content: start;
+      background: rgba(255, 253, 249, 0.9);
+    }
+
+    .text-panel p {
+      color: var(--text-soft);
+    }
+
+    .image-panel {
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      background:
+        radial-gradient(circle at top left, rgba(233, 200, 93, 0.14), transparent 22%),
+        linear-gradient(180deg, rgba(117, 123, 87, 0.08), rgba(255, 255, 255, 0.18)),
+        linear-gradient(180deg, #f4efe5 0%, #e6ddce 50%, #ece6db 100%);
+    }
+
+    .image-panel.practice::before,
+    .image-panel.space::before,
+    .image-panel.team::before {
+      content: "";
+      position: absolute;
+      inset: 28px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .image-panel.practice::after {
+      content: "Detall d’una postura, ajust del professor o moment de respiracio";
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 28px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--text);
+      font: 600 14px/1.4 "Poppins", sans-serif;
+    }
+
+    .image-panel.space {
+      background:
+        radial-gradient(circle at top left, rgba(117, 123, 87, 0.18), transparent 22%),
+        linear-gradient(180deg, rgba(233, 200, 93, 0.08), rgba(255, 255, 255, 0.18)),
+        linear-gradient(180deg, #ede6d9 0%, #e1d8c8 50%, #e8e2d9 100%);
+    }
+
+    .image-panel.space::after {
+      content: "Sala principal amb jardi interior o entrada amb grades";
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 28px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--text);
+      font: 600 14px/1.4 "Poppins", sans-serif;
+    }
+
+    .image-panel.team {
+      background:
+        radial-gradient(circle at top left, rgba(201, 120, 107, 0.12), transparent 20%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(117, 123, 87, 0.08)),
+        linear-gradient(180deg, #f2ede6 0%, #e7dfd1 48%, #ece7de 100%);
+    }
+
+    .portrait-grid {
+      position: absolute;
+      inset: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      align-content: end;
+    }
+
+    .portrait {
+      min-height: 180px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(218, 207, 188, 0.9));
+      border: 1px solid rgba(255, 255, 255, 0.75);
+    }
+
+    .bullet-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .bullet-list li {
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-soft);
+    }
+
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--moss);
+      box-shadow: 0 0 0 6px rgba(117, 123, 87, 0.12);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .testimonial {
+      padding: 24px;
+    }
+
+    .testimonial blockquote {
+      margin: 0;
+      color: var(--text);
+      font-size: 18px;
+    }
+
+    .cta-panel {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .cta-panel p {
+      max-width: 56ch;
+      margin-top: 14px;
+      color: var(--text-soft);
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: end;
+    }
+
+    .site-footer {
+      padding: 28px 0 56px;
+      color: var(--text-soft);
+      font-size: 14px;
+      position: relative;
+      z-index: 2;
+      background: #EDEDE1;
+    }
+
+    .content-stage {
+      background: #EDEDE1;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid rgba(216, 210, 196, 0.92);
+    }
+
+    @media (max-width: 1100px) {
+      .feature-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 980px) {
+      .scroll-layer {
+        padding-top: 52vh;
+      }
+
+      .header-inner,
+      .split,
+      .cta-panel,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-actions {
+        justify-content: start;
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .nav-left,
+      .nav-right,
+      .lang-picker {
+        display: none;
+      }
+
+      .mobile-menu-button {
+        display: inline-flex;
+      }
+
+      .header-inner {
+        position: relative;
+        justify-content: space-between;
+        gap: 14px;
+        grid-template-columns: auto 1fr auto;
+      }
+
+      .brand {
+        position: static;
+        left: auto;
+        top: auto;
+        transform: none;
+      }
+
+      .brand {
+        justify-self: center;
+      }
+
+      .brand-logo {
+        height: 52px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .schedule-track {
+        grid-auto-columns: 82%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header {
+        padding: 12px 0;
+      }
+
+      .scroll-layer {
+        padding-top: 54vh;
+      }
+
+      .hero-shell {
+        align-items: stretch;
+        padding: 0;
+      }
+
+      .header-inner,
+      .panel,
+      .text-panel,
+      .cta-panel,
+      .testimonial,
+      .feature-card {
+        padding: 20px;
+      }
+
+      .header-inner {
+        min-height: 64px;
+        padding: 8px 0;
+      }
+
+      .panel,
+      .feature-card,
+      .schedule-card,
+      .testimonial,
+      .cta-panel,
+      .image-panel,
+      .text-panel {
+        border-radius: 24px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        width: 92%;
+        max-width: 92%;
+        white-space: normal;
+      }
+
+      .hero-subtitle {
+        width: 92%;
+        max-width: 92%;
+      }
+
+      .hero-card {
+        min-height: 50vh;
+        padding: 0 20px;
+      }
+
+      .hero-subtitle {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero" aria-label="Hero principal">
+    <div class="container">
+      <div class="hero-shell">
+        <div class="hero-card">
+          <span class="eyebrow">Ioga a l’Eixample de Barcelona</span>
+          <div class="hero-middle">
+            <h1 class="hero-title">Yogaia: una pràctica amb rigor, calma i atenció.</h1>
+            <p class="hero-subtitle">
+              Un espai amb jardí interior on la pràctica integra cos, respiració i atenció.
+              Classes adaptades, amb una base rigorosa i accessible.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#horaris">Veure horaris</a>
+            <a class="button button-secondary" href="#contacte">Provar una classe</a>
+          </div>
+          <div class="hero-meta">Sense experiència prèvia. Tots els nivells.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scroll-layer">
+    <header class="site-header" id="siteHeader">
+      <div class="container">
+        <div class="header-inner">
+          <nav class="nav nav-left" aria-label="Navegació principal esquerra">
+            <div class="nav-cluster">
+              <a href="#horaris">Horaris</a>
+              <a href="#contacte">Tarifes</a>
+              <a href="#contacte">Inicia’t</a>
+              <a href="#practica">Pràctica</a>
+            </div>
+          </nav>
+          <a class="brand" href="#top" aria-label="Yogaia BCN">
+            <img class="brand-logo" src="logoYogaia-negre-transparent-600x600.png" alt="Yogaia">
+          </a>
+          <nav class="nav nav-right" aria-label="Navegació principal dreta">
+            <div class="nav-cluster">
+              <a href="#contacte">Formacions</a>
+              <a href="#contacte">Tallers</a>
+              <a href="#contacte">Botiga</a>
+            </div>
+            <div class="header-right-tools">
+              <a class="header-cta" href="#horaris">Veure horaris</a>
+              <div class="lang-picker" id="langPicker">
+                <button class="lang-trigger button-secondary" type="button" id="langTrigger" aria-haspopup="true" aria-expanded="false">
+                  ES EN
+                  <span class="lang-chevron" aria-hidden="true">▾</span>
+                </button>
+                <div class="lang-menu" role="menu" aria-label="Canviar idioma">
+                  <a class="lang-option" href="#" role="menuitem">ES</a>
+                  <a class="lang-option" href="#" role="menuitem">EN</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <button class="mobile-menu-button" type="button" id="mobileMenuButton" aria-label="Obrir menú">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16"></path>
+              <path d="M4 12h16"></path>
+              <path d="M4 17h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top" class="content-stage">
+    <section id="horaris">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow"></span>
+            <h2>Horaris del dia</h2>
+          
+          </div>
+          <a class="button button-text" href="#contacte">Veure horari complet</a>
+        </div>
+        <div class="schedule-wrapper">
+          <div class="schedule-track">
+            <article class="schedule-card schedule-placeholder">
+              <strong>8:30</strong>
+              <h3>Hatha raja ioga</h3>
+              <p>Víctor</p>
+               <a class="button button-text" href="#contacte">reserva</a>
+            </article>
+            <article class="schedule-card schedule-placeholder">
+             <strong>11:00</strong>
+              <h3>Ioga suau</h3>
+              <p>Laura</p>
+               <a class="button button-text" href="#contacte">reserva</a> </article>
+            <article class="schedule-card schedule-placeholder">
+             <strong>14:15</strong>
+              <h3>Hatha raja ioga</h3>
+              <p>Mercé</p>
+               <a class="button button-text" href="#contacte">reserva</a></article>
+            <article class="schedule-card schedule-placeholder">
+             <strong>19:00</strong>
+              <h3>Vinysaa</h3>
+              <p>Nina</p>
+               <a class="button button-text" href="#contacte">reserva</a></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel-block" id="intro">
+      <div class="container">
+        <div class="panel">
+          <span class="eyebrow">Un espai per tornar a tu</span>
+          <div style="display:grid; gap:16px; margin-top:18px; max-width:72ch;">
+            <p>Yogaia és un refugi al cor de l’Eixample: un lloc acollidor on la pràctica del ioga esdevé una eina per escoltar el cos, calmar la ment i habitar-te amb més presència.</p>
+            <p>Un espai on cada persona pot trobar el seu ritme i aprofundir en el seu procés, amb una mirada propera, rigorosa i humana.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="que-fem">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Què fem a Yogaia</span>
+            <h2>Les grans línies del projecte, amb claredat i sense soroll.</h2>
+            <p class="section-lead">Aquí la prioritat és orientar ràpidament: classes, formacions, tallers, benestar i empreses.</p>
+          </div>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">01</div>
+            <h3>Classes de ioga</h3>
+            <p>Sessions regulars que integren diferents nivells d’experiència, amb una pràctica adaptada i progressiva.</p>
+            <a class="button button-text" href="#horaris">Veure horaris</a>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">02</div>
+            <h3>Formacions</h3>
+            <p>Programes anuals de 200 h i 300 h, així com formacions específiques i intensius al llarg de l’any.</p>
+            <a class="button button-text" href="#contacte">Veure formacions</a>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">03</div>
+            <h3>Tallers</h3>
+            <p>Sessions monogràfiques per explorar aspectes concrets del ioga amb més profunditat.</p>
+            <a class="button button-text" href="#contacte">Veure tallers</a>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">04</div>
+            <h3>Benestar</h3>
+            <p>Fisioteràpia i assessorament nutricional per cuidar el cos des d’una mirada integral.</p>
+            <a class="button button-text" href="#contacte">Veure serveis</a>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">05</div>
+            <h3>Empreses i grups</h3>
+            <p>Sessions adaptades per a equips que volen incorporar el benestar en el seu dia a dia.</p>
+            <a class="button button-text" href="#contacte">Veure propostes</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="practica">
+      <div class="container split">
+        <div class="image-panel practice" aria-label="Imatge de la pràctica"></div>
+        <div class="text-panel">
+          <span class="eyebrow">La pràctica</span>
+          <h2>Una base de Hatha Raja Ioga que es desplega en diferents ritmes.</h2>
+          <p>A Yogaia compartim una pràctica amb base en el Hatha Raja Ioga, que integra cos, respiració i atenció.</p>
+          <p>Les sessions combinen treball físic i energètic, amb espai per a l’escolta i l’ajust personal. S’ofereixen variacions de les postures perquè cada persona pugui adaptar la pràctica al seu moment i avançar amb seguretat.</p>
+          <p>Aquesta base es desplega en diferents formats de classe: pràctiques més dinàmiques com el Vinyasa, espais més pausats com el Yin Ioga, així com sessions de meditació i Yoga Nidra.</p>
+          <p>Una proposta rigorosa i accessible, que permet aprofundir sense pressa.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="espai">
+      <div class="container split">
+        <div class="text-panel">
+          <span class="eyebrow">L’espai</span>
+          <h2>Un lloc pensat per acollir la pràctica amb amplitud i calma.</h2>
+          <p>Ens trobaràs al cor de l’Eixample de Barcelona, en un espai de més de 400 m² pensat per acollir la pràctica amb amplitud i calma.</p>
+          <p>La sala principal, de 150 m², s’organitza en forma de L al voltant d’un jardí interior. Aquesta disposició crea una presència constant de la natura durant la pràctica, aportant llum, silenci i una sensació de recolliment molt valorada per les persones que hi practiquen.</p>
+          <p>També disposem d’una sala més petita de 24 m² per a grups reduïts o treball més específic.</p>
+          <p>L’espai es completa amb una entrada diàfana amb zona de grades per seure, una petita botiga amb material per a la pràctica i vestidors d’homes i dones amb dutxes.</p>
+          <p>Un entorn cuidat que facilita desconnectar del ritme de la ciutat i sostenir una pràctica continuada i conscient.</p>
+        </div>
+        <div class="image-panel space" aria-label="Imatge de l’espai"></div>
+      </div>
+    </section>
+
+    <section id="equip">
+      <div class="container split">
+        <div class="image-panel team" aria-label="Retrats de l’equip">
+          <div class="portrait-grid" aria-hidden="true">
+            <div class="portrait"></div>
+            <div class="portrait"></div>
+            <div class="portrait"></div>
+          </div>
+        </div>
+        <div class="text-panel">
+          <span class="eyebrow">L’equip</span>
+          <h2>Trajectòria sòlida, precisió i respecte pel ritme de cada persona.</h2>
+          <p>Un equip de professionals amb una trajectòria sòlida en la pràctica i l’ensenyament del ioga.</p>
+          <p>Acompanyem cada procés amb atenció, precisió i respecte pel ritme de cada persona.</p>
+          <a class="button button-secondary" href="#contacte">Conèixer l’equip</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencies">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Experiències</span>
+            <h2>Veus breus, reals i properes.</h2>
+          </div>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial">
+            <blockquote>“Un espai acollidor i una pràctica molt ben guiada. S’hi respira calma des del primer moment.”</blockquote>
+          </article>
+          <article class="testimonial">
+            <blockquote>“Classes cuidades, amb rigor i molta sensibilitat. Un lloc on tornar.”</blockquote>
+          </article>
+          <article class="testimonial">
+            <blockquote>“Yogaia és un espai on sentir-te acompanyat i aprofundir de veritat en la pràctica.”</blockquote>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacte">
+      <div class="container">
+        <div class="cta-panel">
+          <div>
+            <span class="eyebrow">Començar</span>
+            <h2>Un lloc on respirar, moure’t i trobar el teu moment.</h2>
+            <p>Un lloc on pots venir a respirar, moure’t de manera harmoniosa, enfortir-te i descansar. Si ho sents, pots trobar el teu moment.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="button button-primary" href="#horaris">Veure horaris</a>
+            <a class="button button-secondary" href="#horaris">Reservar una classe</a>
+            <a class="button button-secondary" href="#horaris">Contactar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>Prototype HTML basat en `content/home-ca.md` i preparat per adaptar-se després a Elementor.</div>
+        <div>TODO: integrar horaris reals, sistema de reserva i footer definitiu.</div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="mobile-drawer-top">
+      <a class="brand" href="#top" aria-label="Yogaia BCN">
+        <img class="brand-logo" src="logoYogaia-negre-transparent-600x600.png" alt="Yogaia">
+      </a>
+      <button class="mobile-close" type="button" id="mobileClose" aria-label="Tancar menú">×</button>
+    </div>
+    <nav class="mobile-nav" aria-label="Navegació mòbil">
+      <a href="#horaris">Horaris</a>
+      <a href="#contacte">Tarifes</a>
+      <a href="#contacte">Inicia’t</a>
+      <a href="#practica">Pràctica</a>
+      <a href="#contacte">Formacions</a>
+      <a href="#contacte">Tallers</a>
+      <a href="#contacte">Botiga</a>
+    </nav>
+    <div class="mobile-drawer-bottom">
+      <a class="header-cta" href="#horaris">Veure horaris</a>
+      <div class="mobile-lang" aria-label="Idiomes disponibles">
+        <a href="#">ES</a>
+        <a href="#">EN</a>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    const heroTitle = document.querySelector('.hero-title');
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    const langPicker = document.getElementById('langPicker');
+    const langTrigger = document.getElementById('langTrigger');
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileClose = document.getElementById('mobileClose');
+    const initialThreshold = Math.max(120, window.innerHeight * 0.18);
+
+    const onScroll = () => {
+      if (window.scrollY > initialThreshold) {
+        header.classList.add('is-compact');
+      } else {
+        header.classList.remove('is-compact');
+      }
+    };
+
+    const fitSingleLine = (element, maxSize, minSize) => {
+      if (!element) return;
+      let size = maxSize;
+      element.style.fontSize = `${size}px`;
+
+      while (element.scrollWidth > element.clientWidth && size > minSize) {
+        size -= 1;
+        element.style.fontSize = `${size}px`;
+      }
+    };
+
+    const fitHeroText = () => {
+      fitSingleLine(heroTitle, 74, 18);
+      fitSingleLine(heroSubtitle, 19, 11);
+    };
+
+    const toggleLangMenu = () => {
+      if (!langPicker || !langTrigger) return;
+      const isOpen = langPicker.classList.toggle('is-open');
+      langTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+
+    const closeLangMenu = () => {
+      if (!langPicker || !langTrigger) return;
+      langPicker.classList.remove('is-open');
+      langTrigger.setAttribute('aria-expanded', 'false');
+    };
+
+    const openMobileMenu = () => {
+      if (!mobileOverlay || !mobileDrawer) return;
+      mobileOverlay.classList.add('is-open');
+      mobileDrawer.classList.add('is-open');
+      mobileDrawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeMobileMenu = () => {
+      if (!mobileOverlay || !mobileDrawer) return;
+      mobileOverlay.classList.remove('is-open');
+      mobileDrawer.classList.remove('is-open');
+      mobileDrawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    fitHeroText();
+    onScroll();
+
+    window.addEventListener('resize', fitHeroText);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    if (langTrigger) {
+      langTrigger.addEventListener('click', toggleLangMenu);
+      document.addEventListener('click', (event) => {
+        if (!langPicker) return;
+        if (!langPicker.contains(event.target)) closeLangMenu();
+      });
+    }
+
+    if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMobileMenu);
+    if (mobileClose) mobileClose.addEventListener('click', closeMobileMenu);
+    if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileMenu);
+  </script>
+</body>
+</html>
