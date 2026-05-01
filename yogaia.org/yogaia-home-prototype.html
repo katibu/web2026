@@ -194,8 +194,14 @@
       flex-wrap: nowrap;
     }
 
+    .nav a {
+      transition: color 180ms ease, transform 180ms ease;
+      transform-origin: center;
+    }
+
     .nav a:hover {
       color: var(--moss-deep);
+      transform: scale(1.2);
     }
 
     .header-right-tools {
@@ -264,16 +270,8 @@
       min-height: 42px;
       padding: 0 14px;
       border-radius: 999px;
-      border: 0;
-      background: rgba(255, 255, 255, 0.8);
-      color: var(--text);
       font: 600 14px/1 "Poppins", sans-serif;
       cursor: pointer;
-    }
-
-    .lang-trigger:hover {
-      background: rgba(233, 200, 93, 0.16);
-      color: var(--moss-deep);
     }
 
     .lang-chevron {
@@ -445,10 +443,17 @@
       position: relative;
       z-index: 2;
       padding-top: 50vh;
+      pointer-events: none;
     }
 
     main section {
       padding: 34px 0;
+    }
+
+    .site-header,
+    .content-stage,
+    .site-footer {
+      pointer-events: auto;
     }
 
     .hero {
@@ -462,9 +467,8 @@
       display: flex;
       align-items: stretch;
       background:
-        linear-gradient(180deg, rgba(38, 40, 33, 0.20), rgba(38, 40, 33, 0.34)),
-        radial-gradient(circle at top left, rgba(233, 200, 93, 0.16), transparent 18%),
-        linear-gradient(180deg, #f1efe6 0%, #e0d6c6 40%, #d9cfbf 100%);
+        linear-gradient(180deg, rgba(38, 40, 33, 0.18), rgba(38, 40, 33, 0.42)),
+        url("practica-ioga-yogaia-barcelona.png") center bottom / cover no-repeat;
     }
 
     .hero::before {
@@ -559,7 +563,7 @@
       min-height: 50px;
       padding: 0 22px;
       border-radius: 999px;
-      border: 2px solid #171717;
+      border: 0;
       font: 600 15px/1 "Poppins", sans-serif;
       transition: background 180ms ease, color 180ms ease, transform 180ms ease, border-color 180ms ease;
     }
@@ -570,6 +574,7 @@
 
     .button-primary {
       background: var(--cta);
+      border: 2px solid #171717;
       color: var(--text);
     }
 
@@ -579,16 +584,14 @@
     }
 
     .button-secondary {
-      background: rgba(255, 255, 255, 0.84);
-      border-color: rgba(38, 40, 33, 0.08);
+      background: #ffffff;
+      border: 2px solid #171717;
       color: var(--text);
     }
 
     .button-secondary:hover {
-      background: linear-gradient(180deg, rgba(117, 123, 87, 0.94), rgba(89, 96, 66, 0.98));
-      color: #fff;
-      border-color: #171717;
-      box-shadow: 0 12px 24px rgba(89, 96, 66, 0.18);
+      background: rgba(255, 255, 255, 0.4);
+      color: #171717;
     }
 
     .button-text {
@@ -1065,7 +1068,7 @@
             <div class="header-right-tools">
               <a class="header-cta" href="#horaris">Veure horaris</a>
               <div class="lang-picker" id="langPicker">
-                <button class="lang-trigger" type="button" id="langTrigger" aria-haspopup="true" aria-expanded="false">
+                <button class="lang-trigger button-secondary" type="button" id="langTrigger" aria-haspopup="true" aria-expanded="false">
                   ES EN
                   <span class="lang-chevron" aria-hidden="true">▾</span>
                 </button>
