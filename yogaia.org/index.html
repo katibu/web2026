@@ -135,6 +135,18 @@
       box-shadow: 0 10px 22px rgba(50, 43, 35, 0.06);
     }
 
+    body.mobile-menu-open .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+
+    body.mobile-menu-open .scroll-layer {
+      padding-top: calc(50vh + var(--mobile-header-offset, 80px));
+    }
+
     .header-inner {
       position: relative;
       display: grid;
@@ -336,11 +348,48 @@
       stroke-width: 2.2;
       fill: none;
       stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 180ms ease;
+    }
+
+    .mobile-menu-button.is-open svg {
+      transform: rotate(90deg);
+    }
+
+    .mobile-header-lang {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-left: auto;
+      margin-right: 8px;
+    }
+
+    .mobile-header-lang a {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--text);
+      font: 600 13px/1 "Poppins", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .mobile-header-lang a:hover {
+      background: rgba(233, 200, 93, 0.18);
+      color: var(--moss-deep);
     }
 
     .mobile-overlay {
       position: fixed;
-      inset: 0;
+      top: var(--mobile-header-offset, 80px);
+      left: 0;
+      right: 0;
+      bottom: 0;
       z-index: 70;
       background: rgba(38, 40, 33, 0.34);
       opacity: 0;
@@ -355,7 +404,7 @@
 
     .mobile-drawer {
       position: fixed;
-      top: 0;
+      top: var(--mobile-header-offset, 80px);
       left: 0;
       bottom: 0;
       z-index: 80;
@@ -367,7 +416,7 @@
       transform: translateX(-100%);
       transition: transform 220ms ease;
       display: grid;
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: 1fr auto;
       gap: 22px;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
@@ -375,27 +424,6 @@
 
     .mobile-drawer.is-open {
       transform: translateX(0);
-    }
-
-    .mobile-drawer-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .mobile-close {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      border: 0;
-      background: rgba(255, 255, 255, 0.82);
-      color: var(--text);
-      font: 600 20px/1 "Poppins", sans-serif;
-      cursor: pointer;
     }
 
     .mobile-nav {
@@ -430,23 +458,6 @@
       opacity: 1;
       transform: none;
       pointer-events: auto;
-    }
-
-    .mobile-lang {
-      display: flex;
-      gap: 10px;
-    }
-
-    .mobile-lang a {
-      flex: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.8);
-      color: var(--text);
-      font: 600 14px/1 "Poppins", sans-serif;
     }
 
     .scroll-layer {
@@ -547,7 +558,7 @@
       margin-bottom: auto;
       margin-left: auto;
       margin-right: auto;
-      color: var(--text-soft);
+      color: rgba(255, 255, 255, 0.92);
       font-size: 19px;
       white-space: nowrap;
       text-align: center;
@@ -994,6 +1005,7 @@
         display: none;
       }
 
+      .mobile-header-lang,
       .mobile-menu-button {
         display: inline-flex;
       }
@@ -1069,6 +1081,16 @@
         height: 52px;
       }
 
+      .mobile-header-lang {
+        gap: 6px;
+        margin-right: 6px;
+      }
+
+      .mobile-header-lang a {
+        min-width: 46px;
+        min-height: 46px;
+      }
+
       .mobile-drawer {
         width: min(92vw, 360px);
         padding: 18px 16px 22px;
@@ -1094,6 +1116,8 @@
         white-space: normal;
         font-size: clamp(32px, 9.2vw, 48px);
         line-height: 1.08;
+        font-weight: 700;
+        color: #fff;
       }
 
       .hero-subtitle {
@@ -1102,6 +1126,7 @@
         margin-top: 14px;
         font-size: 16px;
         line-height: 1.5;
+        color: rgba(255, 255, 255, 0.92);
       }
 
       .hero-card {
@@ -1110,24 +1135,31 @@
       }
 
       .hero-subtitle {
-        white-space: normal;
+        display: none;
       }
 
       .hero-middle {
         padding-top: 10px;
       }
 
+      .hero-card .eyebrow {
+        display: none;
+      }
+
       .hero-actions {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
+        display: flex;
+        justify-content: center;
         width: 100%;
         padding-top: 20px;
       }
 
       .hero-actions .button {
-        width: 100%;
+        width: min(100%, 320px);
         min-height: 52px;
+      }
+
+      .hero-actions .button-secondary {
+        display: none;
       }
 
       .hero-meta {
@@ -1247,6 +1279,10 @@
           <a class="brand" href="#top" aria-label="Yogaia BCN">
             <img class="brand-logo" src="logoYogaia-negre-transparent-600x600.png" alt="Yogaia">
           </a>
+          <div class="mobile-header-lang" aria-label="Canviar idioma">
+            <a href="#" lang="es" aria-label="Español">ES</a>
+            <a href="#" lang="en" aria-label="English">EN</a>
+          </div>
           <nav class="nav nav-right" aria-label="Navegació principal dreta">
             <div class="nav-cluster">
               <a href="#contacte">Formacions</a>
@@ -1269,9 +1305,9 @@
           </nav>
           <button class="mobile-menu-button" type="button" id="mobileMenuButton" aria-label="Obrir menú">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4 7h16"></path>
-              <path d="M4 12h16"></path>
-              <path d="M4 17h16"></path>
+              <path id="mobileMenuIconTop" d="M4 7h16"></path>
+              <path id="mobileMenuIconMiddle" d="M4 12h16"></path>
+              <path id="mobileMenuIconBottom" d="M4 17h16"></path>
             </svg>
           </button>
         </div>
@@ -1483,12 +1519,6 @@
 
   <div class="mobile-overlay" id="mobileOverlay"></div>
   <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
-    <div class="mobile-drawer-top">
-      <a class="brand" href="#top" aria-label="Yogaia BCN">
-        <img class="brand-logo" src="logoYogaia-negre-transparent-600x600.png" alt="Yogaia">
-      </a>
-      <button class="mobile-close" type="button" id="mobileClose" aria-label="Tancar menú">×</button>
-    </div>
     <nav class="mobile-nav" aria-label="Navegació mòbil">
       <a href="#horaris">Horaris</a>
       <a href="#contacte">Tarifes</a>
@@ -1500,10 +1530,6 @@
     </nav>
     <div class="mobile-drawer-bottom">
       <a class="header-cta" href="#horaris">Veure horaris</a>
-      <div class="mobile-lang" aria-label="Idiomes disponibles">
-        <a href="#">ES</a>
-        <a href="#">EN</a>
-      </div>
     </div>
   </aside>
 
@@ -1516,13 +1542,16 @@
     const mobileMenuButton = document.getElementById('mobileMenuButton');
     const mobileOverlay = document.getElementById('mobileOverlay');
     const mobileDrawer = document.getElementById('mobileDrawer');
-    const mobileClose = document.getElementById('mobileClose');
+    const mobileMenuIconTop = document.getElementById('mobileMenuIconTop');
+    const mobileMenuIconMiddle = document.getElementById('mobileMenuIconMiddle');
+    const mobileMenuIconBottom = document.getElementById('mobileMenuIconBottom');
     const mobileLinks = document.querySelectorAll('.mobile-nav a, .mobile-drawer-bottom a');
     const scheduleTrack = document.querySelector('.schedule-track');
     const scheduleControls = document.getElementById('scheduleControls');
     const schedulePrev = document.getElementById('schedulePrev');
     const scheduleNext = document.getElementById('scheduleNext');
     const initialThreshold = Math.max(120, window.innerHeight * 0.18);
+    let mobileMenuForcedCompact = false;
 
     const onScroll = () => {
       if (window.scrollY > initialThreshold) {
@@ -1567,9 +1596,19 @@
 
     const openMobileMenu = () => {
       if (!mobileOverlay || !mobileDrawer) return;
+      if (window.scrollY <= initialThreshold) mobileMenuForcedCompact = true;
+      document.body.classList.add('mobile-menu-open');
+      header.classList.add('is-compact');
+      updateMobileMenuOffset();
       mobileOverlay.classList.add('is-open');
       mobileDrawer.classList.add('is-open');
       mobileDrawer.setAttribute('aria-hidden', 'false');
+      if (mobileMenuButton) {
+        mobileMenuButton.classList.add('is-open');
+        mobileMenuButton.setAttribute('aria-label', 'Tancar menú');
+        mobileMenuButton.setAttribute('aria-expanded', 'true');
+      }
+      setMobileMenuIcon(true);
       document.body.style.overflow = 'hidden';
     };
 
@@ -1578,7 +1617,45 @@
       mobileOverlay.classList.remove('is-open');
       mobileDrawer.classList.remove('is-open');
       mobileDrawer.setAttribute('aria-hidden', 'true');
+      if (mobileMenuButton) {
+        mobileMenuButton.classList.remove('is-open');
+        mobileMenuButton.setAttribute('aria-label', 'Obrir menú');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      }
+      setMobileMenuIcon(false);
       document.body.style.overflow = '';
+      document.body.classList.remove('mobile-menu-open');
+      if (mobileMenuForcedCompact && window.scrollY <= initialThreshold) {
+        header.classList.remove('is-compact');
+      }
+      mobileMenuForcedCompact = false;
+    };
+
+    const toggleMobileMenu = () => {
+      if (!mobileDrawer) return;
+      if (mobileDrawer.classList.contains('is-open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    };
+
+    const setMobileMenuIcon = (isOpen) => {
+      if (!mobileMenuIconTop || !mobileMenuIconMiddle || !mobileMenuIconBottom) return;
+      if (isOpen) {
+        mobileMenuIconTop.setAttribute('d', 'M6 6l12 12');
+        mobileMenuIconMiddle.setAttribute('d', '');
+        mobileMenuIconBottom.setAttribute('d', 'M18 6L6 18');
+      } else {
+        mobileMenuIconTop.setAttribute('d', 'M4 7h16');
+        mobileMenuIconMiddle.setAttribute('d', 'M4 12h16');
+        mobileMenuIconBottom.setAttribute('d', 'M4 17h16');
+      }
+    };
+
+    const updateMobileMenuOffset = () => {
+      if (!header) return;
+      document.documentElement.style.setProperty('--mobile-header-offset', `${header.offsetHeight}px`);
     };
 
     const updateScheduleControls = () => {
@@ -1602,10 +1679,13 @@
     fitHeroText();
     onScroll();
     updateScheduleControls();
+    updateMobileMenuOffset();
+    setMobileMenuIcon(false);
 
     window.addEventListener('resize', () => {
       fitHeroText();
       updateScheduleControls();
+      updateMobileMenuOffset();
     });
     window.addEventListener('scroll', onScroll, { passive: true });
     if (scheduleTrack) scheduleTrack.addEventListener('scroll', updateScheduleControls, { passive: true });
@@ -1618,8 +1698,7 @@
       });
     }
 
-    if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMobileMenu);
-    if (mobileClose) mobileClose.addEventListener('click', closeMobileMenu);
+    if (mobileMenuButton) mobileMenuButton.addEventListener('click', toggleMobileMenu);
     if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileMenu);
     mobileLinks.forEach((link) => link.addEventListener('click', closeMobileMenu));
     if (schedulePrev) schedulePrev.addEventListener('click', () => scrollScheduleBy(-1));
