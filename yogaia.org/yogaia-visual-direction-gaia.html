@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yogaia — Variacio Gaia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap');
+
+    :root {
+      --bg: #EDEDE1;
+      --surface: #bdad96;
+      --surface-soft: #d9c4a8;
+      --text: #31352c;
+      --text-deep: #4f3b2e;
+      --line: #a39c84;
+      --neutral: #9a825f;
+      --accent-earth: #bc7043;
+      --accent-clay: #8d5636;
+      --accent-moss: #6d713f;
+      --accent-moss-deep: #4e4f34;
+      --shadow: 0 22px 52px rgba(79, 59, 46, 0.16);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --content: 1140px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Open Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(188, 112, 67, 0.18), transparent 18%),
+        radial-gradient(circle at right top, rgba(109, 113, 63, 0.16), transparent 16%),
+        linear-gradient(180deg, #f0ede2 0%, #EDEDE1 100%);
+      line-height: 1.65;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--content));
+      margin: 0 auto;
+    }
+
+    .page {
+      padding: 34px 0 56px;
+    }
+
+    .hero,
+    .panel {
+      background: rgba(255, 250, 241, 0.56);
+      border: 1px solid rgba(79, 59, 46, 0.10);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      padding: 32px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -30px;
+      width: 180px;
+      height: 180px;
+      border-radius: 58% 42% 52% 48% / 44% 58% 42% 56%;
+      background: rgba(109, 113, 63, 0.16);
+      filter: blur(2px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 251, 245, 0.74);
+      color: var(--neutral);
+      font: 700 12px/1 "Poppins", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent-earth);
+      box-shadow: 0 0 0 6px rgba(188, 112, 67, 0.14);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--text-deep);
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(38px, 7vw, 72px);
+      font-weight: 800;
+      max-width: 11ch;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      max-width: 62ch;
+      margin: 18px 0 0;
+      color: rgba(49, 53, 44, 0.84);
+      font-size: clamp(16px, 2vw, 18px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font: 600 15px/1 "Poppins", sans-serif;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease, border-color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: var(--accent-earth);
+      color: #fff;
+    }
+
+    .button-primary:hover {
+      background: var(--accent-clay);
+    }
+
+    .button-secondary {
+      background: rgba(255, 251, 245, 0.82);
+      border-color: rgba(79, 59, 46, 0.12);
+      color: var(--text-deep);
+    }
+
+    .button-secondary:hover {
+      border-color: rgba(109, 113, 63, 0.42);
+      color: var(--accent-moss-deep);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .panel {
+      padding: 28px;
+    }
+
+    .section-text {
+      color: rgba(49, 53, 44, 0.82);
+      margin: 0 0 18px;
+    }
+
+    .palette-group {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .palette-title {
+      color: var(--neutral);
+      font: 700 13px/1.2 "Poppins", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 6px 0 0;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .swatch {
+      min-height: 150px;
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      border: 1px solid rgba(79, 59, 46, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swatch::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 48%;
+      background: linear-gradient(180deg, transparent, rgba(49, 53, 44, 0.12));
+    }
+
+    .swatch > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .swatch strong {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .swatch code {
+      font-family: inherit;
+      font-size: 15px;
+      opacity: 0.92;
+    }
+
+    .usage {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .usage-item {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 251, 245, 0.62);
+      border: 1px solid rgba(79, 59, 46, 0.06);
+      color: rgba(49, 53, 44, 0.84);
+    }
+
+    .type-sample {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 251, 245, 0.64);
+      border: 1px solid rgba(79, 59, 46, 0.06);
+      margin-top: 16px;
+    }
+
+    .display-sample {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--text-deep);
+    }
+
+    .body-sample {
+      margin-top: 14px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 16px;
+      color: rgba(49, 53, 44, 0.84);
+    }
+
+    .ui-sample {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .ui-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(109, 113, 63, 0.18);
+      color: var(--text);
+      font: 600 14px/1 "Poppins", sans-serif;
+    }
+
+    .tokens {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .token {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 251, 245, 0.62);
+      border: 1px solid rgba(79, 59, 46, 0.06);
+      font-size: 15px;
+    }
+
+    .token strong {
+      font-family: "Montserrat", sans-serif;
+      color: var(--text-deep);
+    }
+
+    .ux-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(109, 113, 63, 0.16);
+      border: 1px solid rgba(109, 113, 63, 0.26);
+      color: var(--text-deep);
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-top: 18px;
+      }
+
+      .hero,
+      .panel {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .swatches {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        max-width: none;
+      }
+
+      .token {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <section class="hero">
+        <span class="eyebrow">Variacio Gaia amb ui-ux-pro-max</span>
+        <h1>Una base mes terrenal, organica i càlida per comparar.</h1>
+        <p class="lead">
+          Aquesta segona proposta agafa la paleta Gaia i la redueix a un sistema usable segons criteri
+          `ui-ux-pro-max`: pocs tokens reals, llegibilitat alta, i color d&apos;accio separat del color d&apos;atmosfera.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#colors">Accio principal</a>
+          <a class="button button-secondary" href="#fonts">Comparar tipografia</a>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section class="panel" id="colors">
+          <h2>Paleta Gaia filtrada</h2>
+          <p class="section-text">
+            No faig servir tots els colors com a sistema. Selecciono una base clara, dos foscos de lectura,
+            un neutre de suport, un accent molsa i un accent terra per a moments d&apos;accio.
+          </p>
+
+          <div class="palette-group">
+            <div class="palette-title">Colors Base</div>
+            <div class="swatches">
+              <div class="swatch" style="background:#EDEDE1; color:#31352C">
+                <strong>Background Base</strong>
+                <code>#EDEDE1</code>
+              </div>
+              <div class="swatch" style="background:#BDAD96; color:#31352C">
+                <strong>Surface</strong>
+                <code>#BDAD96</code>
+              </div>
+              <div class="swatch" style="background:#31352C; color:#FFFFFF">
+                <strong>Text Principal</strong>
+                <code>#31352C</code>
+              </div>
+              <div class="swatch" style="background:#4F3B2E; color:#FFFFFF">
+                <strong>Text Deep</strong>
+                <code>#4F3B2E</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="palette-group">
+            <div class="palette-title">Accents Funcionals</div>
+            <div class="swatches">
+              <div class="swatch" style="background:#6D713F; color:#FFFFFF">
+                <strong>Accent Moss</strong>
+                <code>#6D713F</code>
+              </div>
+              <div class="swatch" style="background:#BC7043; color:#FFFFFF">
+                <strong>Accent Earth CTA</strong>
+                <code>#BC7043</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="usage">
+            <div class="usage-item">
+              `#EDEDE1` manté la continuïtat amb la base actual, mentre `#BDAD96` aporta una capa
+              més càlida i orgànica a superfícies i blocs.
+            </div>
+            <div class="usage-item">
+              `#31352C` i `#4F3B2E` aguanten millor la llegibilitat que els marrons mitjans.
+              Son els colors que fan usable la paleta.
+            </div>
+            <div class="usage-item">
+              `#6D713F` serveix per accents tranquils de navegacio o estat.
+              `#BC7043` funciona millor per CTA visible o moments d&apos;atencio.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="fonts">
+          <h2>Tipografia sobre Gaia</h2>
+          <p class="section-text">
+            Mantinc la mateixa base tipografica perquè la comparacio sigui neta:
+            `Montserrat`, `Open Sans` i `Poppins`. El que canvia es l&apos;ambient que genera el color.
+          </p>
+
+          <div class="type-sample">
+            <div class="display-sample">Una paleta mes terrenal demana contrast mes disciplinat.</div>
+            <div class="body-sample">
+              Sobre tons càlids i orgànics, Open Sans continua funcionant bé en mòbil perquè manté
+              una lectura oberta i clara. El que s&apos;ha de controlar és el pes cromàtic del fons.
+            </div>
+            <div class="ui-sample">
+              <span class="ui-pill">Classes</span>
+              <span class="ui-pill">Horaris</span>
+              <span class="ui-pill">Reserva</span>
+            </div>
+          </div>
+
+          <div class="tokens">
+            <div class="token"><strong>H1</strong><span>Montserrat 64 / 1.02 / 800</span></div>
+            <div class="token"><strong>H2</strong><span>Montserrat 46 / 1.08 / 700</span></div>
+            <div class="token"><strong>H3</strong><span>Montserrat 28 / 1.12 / 700</span></div>
+            <div class="token"><strong>Body Large</strong><span>Open Sans 18 / 1.7 / 500</span></div>
+            <div class="token"><strong>Body</strong><span>Open Sans 16 / 1.7 / 400</span></div>
+            <div class="token"><strong>Small</strong><span>Open Sans 14 / 1.6 / 600</span></div>
+            <div class="token"><strong>Buttons</strong><span>Poppins 15 / 1 / 600</span></div>
+          </div>
+
+          <div class="ux-note">
+            Criteri `ui-ux-pro-max`: aquesta paleta es visualment rica, pero no s&apos;ha d&apos;estendre
+            sense control. Si el fons pesa massa, la UI perd aire. La clau es deixar espai i limitar els accents.
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yogaia — Variacio Hibrida</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap');
+
+    :root {
+      --bg: #EDEDE1;
+      --surface: #F6F2E8;
+      --surface-soft: #E4D9C8;
+      --text: #262821;
+      --text-soft: #5F5A52;
+      --line: #D8D2C4;
+      --neutral: #938774;
+      --moss: #757B57;
+      --moss-deep: #596042;
+      --cta: #E9C85D;
+      --cta-hover: #C9786B;
+      --shadow: 0 20px 48px rgba(50, 43, 35, 0.08);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --content: 1140px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Open Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(233, 200, 93, 0.10), transparent 18%),
+        radial-gradient(circle at right top, rgba(117, 123, 87, 0.10), transparent 16%),
+        linear-gradient(180deg, #F1EFE6 0%, #EDEDE1 100%);
+      line-height: 1.65;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--content));
+      margin: 0 auto;
+    }
+
+    .page {
+      padding: 34px 0 56px;
+    }
+
+    .hero,
+    .panel {
+      background: rgba(255, 255, 255, 0.60);
+      border: 1px solid rgba(216, 210, 196, 0.82);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      padding: 32px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -36px;
+      top: -26px;
+      width: 170px;
+      height: 170px;
+      border-radius: 56% 44% 48% 52% / 40% 56% 44% 60%;
+      background: rgba(117, 123, 87, 0.12);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--neutral);
+      font: 700 12px/1 "Poppins", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--cta);
+      box-shadow: 0 0 0 6px rgba(233, 200, 93, 0.14);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(38px, 7vw, 72px);
+      font-weight: 800;
+      max-width: 11ch;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      max-width: 62ch;
+      margin: 18px 0 0;
+      color: var(--text-soft);
+      font-size: clamp(16px, 2vw, 18px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font: 600 15px/1 "Poppins", sans-serif;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease, border-color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: var(--cta);
+      color: var(--text);
+    }
+
+    .button-primary:hover {
+      background: var(--cta-hover);
+      color: #fff;
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.84);
+      border-color: rgba(38, 40, 33, 0.08);
+      color: var(--text);
+    }
+
+    .button-secondary:hover {
+      border-color: rgba(117, 123, 87, 0.34);
+      color: var(--moss-deep);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .panel {
+      padding: 28px;
+    }
+
+    .section-text {
+      color: var(--text-soft);
+      margin: 0 0 18px;
+    }
+
+    .palette-group {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .palette-title {
+      color: var(--neutral);
+      font: 700 13px/1.2 "Poppins", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 6px 0 0;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .swatch {
+      min-height: 148px;
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      border: 1px solid rgba(38, 40, 33, 0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swatch::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 46%;
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.10));
+    }
+
+    .swatch > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .swatch strong {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .swatch code {
+      font-family: inherit;
+      font-size: 15px;
+      opacity: 0.92;
+    }
+
+    .notes {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .note {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(38, 40, 33, 0.05);
+      color: var(--text-soft);
+    }
+
+    .type-sample {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(38, 40, 33, 0.05);
+      margin-top: 16px;
+    }
+
+    .display-sample {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .body-sample {
+      margin-top: 14px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 16px;
+      color: var(--text-soft);
+    }
+
+    .ui-sample {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .ui-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(117, 123, 87, 0.16);
+      color: var(--text);
+      font: 600 14px/1 "Poppins", sans-serif;
+    }
+
+    .tokens {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .token {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(38, 40, 33, 0.05);
+      font-size: 15px;
+    }
+
+    .token strong {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .ux-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(233, 200, 93, 0.14);
+      border: 1px solid rgba(233, 200, 93, 0.24);
+      color: var(--text);
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-top: 18px;
+      }
+
+      .hero,
+      .panel {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .swatches {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        max-width: none;
+      }
+
+      .token {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <section class="hero">
+        <span class="eyebrow">Variacio Hibrida amb ui-ux-pro-max</span>
+        <h1>Mes zen i mes calmada, pero amb accio clara quan toca.</h1>
+        <p class="lead">
+          Aquesta tercera proposta barreja la netedat de la base actual amb una mica de calidesa organica.
+          Segueix el criteri `ui-ux-pro-max`: atmosfera suau, poques peces cromatiques i accions visibles
+          pero no agressives.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#colors">Accio principal</a>
+          <a class="button button-secondary" href="#fonts">Estil secundari</a>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section class="panel" id="colors">
+          <h2>Paleta hibrida</h2>
+          <p class="section-text">
+            La paleta es curta a proposit: el fons es manté net, les superfícies són càlides però lleugeres,
+            i el color d&apos;accio passa a una versio més pastel del groc i del vermell original.
+          </p>
+
+          <div class="palette-group">
+            <div class="palette-title">Colors Base</div>
+            <div class="swatches">
+              <div class="swatch" style="background:#EDEDE1; color:#262821">
+                <strong>Background Base</strong>
+                <code>#EDEDE1</code>
+              </div>
+              <div class="swatch" style="background:#F6F2E8; color:#262821">
+                <strong>Surface</strong>
+                <code>#F6F2E8</code>
+              </div>
+              <div class="swatch" style="background:#262821; color:#FFFFFF">
+                <strong>Text Principal</strong>
+                <code>#262821</code>
+              </div>
+              <div class="swatch" style="background:#757B57; color:#FFFFFF">
+                <strong>Accent Calm</strong>
+                <code>#757B57</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="palette-group">
+            <div class="palette-title">Colors d&apos;Accio</div>
+            <div class="swatches">
+              <div class="swatch" style="background:#E9C85D; color:#262821">
+                <strong>CTA Soft</strong>
+                <code>#E9C85D</code>
+              </div>
+              <div class="swatch" style="background:#C9786B; color:#FFFFFF">
+                <strong>Hover Soft</strong>
+                <code>#C9786B</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="notes">
+            <div class="note">
+              `#EDEDE1` manté la serenor i la continuïtat amb la base actual. És el color que deixa respirar
+              la composició i evita que la web es torni massa cromàtica.
+            </div>
+            <div class="note">
+              `#757B57` introdueix un to zen i natural sense enfosquir massa. Serveix per accents tranquils,
+              petits highlights o etiquetes suaus.
+            </div>
+            <div class="note">
+              `#E9C85D` i `#C9786B` són una reinterpretació més pastel del sistema d&apos;acció:
+              continuen cridant, però amb una energia menys dura.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="fonts">
+          <h2>Tipografia sobre la versio hibrida</h2>
+          <p class="section-text">
+            Mantinc `Montserrat`, `Open Sans` i `Poppins` perquè la comparació entre propostes sigui real.
+            El que canvia és l&apos;entorn cromàtic: aquesta versió respira més i se sent més suau.
+          </p>
+
+          <div class="type-sample">
+            <div class="display-sample">La calma visual necessita menys contrast agressiu, no menys claredat.</div>
+            <div class="body-sample">
+              Amb aquesta base, Open Sans continua sent molt adequada en mòbil: el fons és net,
+              el contrast és estable i l&apos;accent no competeix tota l&apos;estona amb el contingut.
+            </div>
+            <div class="ui-sample">
+              <span class="ui-pill">Classes</span>
+              <span class="ui-pill">Horaris</span>
+              <span class="ui-pill">Reserva</span>
+            </div>
+          </div>
+
+          <div class="tokens">
+            <div class="token"><strong>H1</strong><span>Montserrat 64 / 1.02 / 800</span></div>
+            <div class="token"><strong>H2</strong><span>Montserrat 46 / 1.08 / 700</span></div>
+            <div class="token"><strong>H3</strong><span>Montserrat 28 / 1.12 / 700</span></div>
+            <div class="token"><strong>Body Large</strong><span>Open Sans 18 / 1.7 / 500</span></div>
+            <div class="token"><strong>Body</strong><span>Open Sans 16 / 1.7 / 400</span></div>
+            <div class="token"><strong>Small</strong><span>Open Sans 14 / 1.6 / 600</span></div>
+            <div class="token"><strong>Buttons</strong><span>Poppins 15 / 1 / 600</span></div>
+          </div>
+
+          <div class="ux-note">
+            Criteri `ui-ux-pro-max`: la calma no ve de baixar contrast fins al punt de perdre llegibilitat.
+            Ve de controlar quants colors reals governen la interfície i reservar la crida d&apos;acció per al moment adequat.
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
