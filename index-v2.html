@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yogaia BCN · Ioga a l'Eixample de Barcelona</title>
+  <meta name="description" content="Yogaia BCN, escola de ioga a l'Eixample de Barcelona. Classes regulars, formacions, tallers i serveis de benestar en un espai amb jardí interior de 400m².">
+  <meta name="theme-color" content="#edeae0">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Yogaia BCN · Ioga a l'Eixample de Barcelona">
+  <meta property="og:description" content="Un espai amb jardí interior on la pràctica integra cos, respiració i atenció. Classes adaptades, amb una base rigorosa i accessible.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ca_ES">
+
+  <link rel="stylesheet" href="index-v2.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- Skip to content (accessibilitat WCAG 2.4.1) -->
+  <a href="#contingut-principal" class="skip-link">Salta al contingut principal</a>
+
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <section class="hero" aria-label="Presentació de Yogaia BCN">
+
+    <!-- Decoració botànica (aria-hidden) -->
+    <div class="hero-botanical" aria-hidden="true">
+      <!-- Fulla gran dreta -->
+      <svg class="botanical-right" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M200 580 C80 500 20 380 40 260 C60 140 120 60 200 20 C280 60 340 140 360 260 C380 380 320 500 200 580Z" stroke="#4e6340" stroke-width="1.5"/>
+        <path d="M200 20 L200 580" stroke="#4e6340" stroke-width="1" stroke-dasharray="4 8"/>
+        <path d="M200 180 C240 200 280 180 310 200" stroke="#4e6340" stroke-width="1" stroke-dasharray="3 6"/>
+        <path d="M200 280 C160 300 120 280 90 300" stroke="#4e6340" stroke-width="1" stroke-dasharray="3 6"/>
+        <path d="M200 380 C240 400 270 380 290 400" stroke="#4e6340" stroke-width="1" stroke-dasharray="3 6"/>
+        <ellipse cx="200" cy="300" rx="120" ry="180" stroke="#7a8e69" stroke-width="0.8" stroke-dasharray="2 10"/>
+      </svg>
+      <!-- Fulla petita esquerra-baix -->
+      <svg class="botanical-left" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M150 380 C60 320 20 240 30 160 C40 80 90 30 150 10 C210 30 260 80 270 160 C280 240 240 320 150 380Z" stroke="#7a8e69" stroke-width="1.2"/>
+        <path d="M150 10 L150 380" stroke="#7a8e69" stroke-width="0.8" stroke-dasharray="3 7"/>
+      </svg>
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-inner">
+          <div class="eyebrow hero-eyebrow">Ioga a l'Eixample de Barcelona</div>
+          <h1 class="hero-title">
+            Un espai per<br>
+            <em>tornar a tu.</em>
+          </h1>
+          <p class="hero-subtitle">
+            Yogaia és un refugi al cor de l'Eixample: un lloc acollidor on la pràctica del ioga integra cos, respiració i atenció. Classes adaptades, amb una base rigorosa i accessible.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#horaris">Veure horaris</a>
+            <a class="btn btn-secondary" href="#contacte">Provar una classe</a>
+          </div>
+          <p class="hero-meta">Sense experiència prèvia. Tots els nivells benvinguts.</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-divider" aria-hidden="true"></div>
+  </section>
+
+  <!-- ─── HEADER STICKY ─────────────────────────────────────── -->
+  <div class="scroll-layer">
+    <header class="site-header" id="siteHeader" role="banner">
+      <div class="container">
+        <div class="header-inner">
+
+          <!-- Nav esquerra -->
+          <nav class="nav nav-left" aria-label="Navegació principal">
+            <div class="nav-cluster">
+              <a href="#horaris">Horaris</a>
+              <a href="#contacte">Tarifes</a>
+              <a href="#contacte">Inicia't</a>
+              <a href="#practica">Pràctica</a>
+            </div>
+          </nav>
+
+          <!-- Logo central -->
+          <a class="brand" href="#top" aria-label="Yogaia BCN — pàgina d'inici">
+            <img class="brand-logo"
+                 src="logoYogaia-negre-transparent-600x600.png"
+                 alt="Yogaia"
+                 width="56" height="56">
+          </a>
+
+          <!-- Nav dreta + idioma (mòbil: oculta) -->
+          <div class="mobile-header-lang" aria-label="Canviar idioma">
+            <a href="#" lang="es" aria-label="Versió en castellà">ES</a>
+            <a href="#" lang="en" aria-label="English version">EN</a>
+          </div>
+
+          <nav class="nav nav-right" aria-label="Navegació secundària">
+            <div class="nav-cluster">
+              <a href="#contacte">Formacions</a>
+              <a href="#contacte">Tallers</a>
+              <a href="#contacte">Botiga</a>
+            </div>
+            <div class="header-right-tools">
+              <a class="header-cta" href="#horaris">Veure horaris</a>
+              <div class="lang-picker" id="langPicker">
+                <button class="lang-trigger"
+                        type="button"
+                        id="langTrigger"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        aria-controls="langMenu">
+                  CA · ES
+                  <span class="lang-chevron" aria-hidden="true">▾</span>
+                </button>
+                <div class="lang-menu"
+                     id="langMenu"
+                     role="menu"
+                     aria-label="Selecciona idioma">
+                  <a class="lang-option" href="#" role="menuitem" hreflang="ca" aria-current="true">Català</a>
+                  <a class="lang-option" href="#" role="menuitem" hreflang="es">Castellà</a>
+                  <a class="lang-option" href="#" role="menuitem" hreflang="en">English</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+          <!-- Botó menú mòbil -->
+          <button class="mobile-menu-button"
+                  type="button"
+                  id="mobileMenuButton"
+                  aria-label="Obrir menú de navegació"
+                  aria-expanded="false"
+                  aria-controls="mobileDrawer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path id="menuIconTop" d="M4 7h16"/>
+              <path id="menuIconMid" d="M4 12h16"/>
+              <path id="menuIconBot" d="M4 17h16"/>
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- ─── CONTINGUT PRINCIPAL ──────────────────────────────── -->
+    <main id="contingut-principal" class="content-stage" tabindex="-1">
+
+      <!-- HORARIS -->
+      <section id="horaris" aria-labelledby="horaris-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <span class="eyebrow">Avui a Yogaia</span>
+              <h2 id="horaris-title">Horaris del dia</h2>
+              <p class="section-lead">Troba el teu moment. Tots els nivells benvinguts.</p>
+            </div>
+            <a class="btn btn-secondary" href="#contacte">Horari complet</a>
+          </div>
+
+          <div class="schedule-wrapper" role="region" aria-label="Classes d'avui">
+            <div class="schedule-track" id="scheduleTrack">
+              <article class="schedule-card reveal reveal-delay-1">
+                <p class="schedule-time">08:30</p>
+                <h3>Hatha Raja Ioga</h3>
+                <p class="instructor">amb Víctor</p>
+                <a class="btn-ghost btn" href="#contacte" aria-label="Reservar Hatha Raja Ioga 8:30">Reservar →</a>
+              </article>
+              <article class="schedule-card reveal reveal-delay-2">
+                <p class="schedule-time">11:00</p>
+                <h3>Ioga Suau</h3>
+                <p class="instructor">amb Laura</p>
+                <a class="btn-ghost btn" href="#contacte" aria-label="Reservar Ioga Suau 11:00">Reservar →</a>
+              </article>
+              <article class="schedule-card reveal reveal-delay-3">
+                <p class="schedule-time">14:15</p>
+                <h3>Hatha Raja Ioga</h3>
+                <p class="instructor">amb Mercè</p>
+                <a class="btn-ghost btn" href="#contacte" aria-label="Reservar Hatha Raja Ioga 14:15">Reservar →</a>
+              </article>
+              <article class="schedule-card reveal reveal-delay-4">
+                <p class="schedule-time">19:00</p>
+                <h3>Vinyasa</h3>
+                <p class="instructor">amb Nina</p>
+                <a class="btn-ghost btn" href="#contacte" aria-label="Reservar Vinyasa 19:00">Reservar →</a>
+              </article>
+              <article class="schedule-card">
+                <p class="schedule-time">20:30</p>
+                <h3>Yin Ioga</h3>
+                <p class="instructor">amb Laura</p>
+                <a class="btn-ghost btn" href="#contacte" aria-label="Reservar Yin Ioga 20:30">Reservar →</a>
+              </article>
+            </div>
+          </div>
+
+          <div class="schedule-controls" aria-label="Desplaçar horaris">
+            <button class="schedule-arrow" type="button" id="schedulePrev" aria-label="Classes anteriors">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <button class="schedule-arrow" type="button" id="scheduleNext" aria-label="Classes següents">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTRO -->
+      <section id="intro" aria-labelledby="intro-title">
+        <div class="container">
+          <div class="intro-panel reveal">
+            <span class="eyebrow">Un espai per tornar a tu</span>
+            <h2 id="intro-title">Yogaia és un refugi al cor de l'Eixample.</h2>
+            <div class="intro-copy">
+              <p>Un lloc acollidor on la pràctica del ioga esdevé una eina per escoltar el cos, calmar la ment i habitar-te amb més presència.</p>
+              <p>Un espai on cada persona pot trobar el seu ritme i aprofundir en el seu procés, amb una mirada propera, rigorosa i humana.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUÈ FEM -->
+      <section id="que-fem" aria-labelledby="que-fem-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <span class="eyebrow">Què fem a Yogaia</span>
+              <h2 id="que-fem-title">Les grans línies del projecte.</h2>
+              <p class="section-lead">Classes, formacions, tallers, benestar i propostes per a empreses.</p>
+            </div>
+          </div>
+          <div class="feature-grid" role="list">
+            <article class="feature-card reveal reveal-delay-1" role="listitem">
+              <p class="feature-num">01</p>
+              <h3>Classes de ioga</h3>
+              <p>Sessions regulars que integren diferents nivells d'experiència, amb una pràctica adaptada i progressiva.</p>
+              <a class="btn btn-ghost" href="#horaris">Veure horaris →</a>
+            </article>
+            <article class="feature-card reveal reveal-delay-2" role="listitem">
+              <p class="feature-num">02</p>
+              <h3>Formacions</h3>
+              <p>Programes anuals de 200 h (Nivell I) i 300 h (Nivell II), així com formacions específiques i intensius al llarg de l'any.</p>
+              <a class="btn btn-ghost" href="#contacte">Veure formacions →</a>
+            </article>
+            <article class="feature-card reveal reveal-delay-3" role="listitem">
+              <p class="feature-num">03</p>
+              <h3>Tallers</h3>
+              <p>Sessions monogràfiques per explorar aspectes concrets del ioga amb més profunditat i temps.</p>
+              <a class="btn btn-ghost" href="#contacte">Veure tallers →</a>
+            </article>
+            <article class="feature-card reveal reveal-delay-1" role="listitem">
+              <p class="feature-num">04</p>
+              <h3>Benestar</h3>
+              <p>Fisioteràpia i assessorament nutricional per cuidar el cos des d'una mirada integral i personalitzada.</p>
+              <a class="btn btn-ghost" href="#contacte">Veure serveis →</a>
+            </article>
+            <article class="feature-card reveal reveal-delay-2" role="listitem">
+              <p class="feature-num">05</p>
+              <h3>Empreses i grups</h3>
+              <p>Sessions adaptades per a equips que volen incorporar el benestar en el seu dia a dia.</p>
+              <a class="btn btn-ghost" href="#contacte">Veure propostes →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- LA PRÀCTICA -->
+      <section id="practica" aria-labelledby="practica-title">
+        <div class="container split">
+          <div class="image-panel practice"
+               role="img"
+               aria-label="Imatge d'una sessió de ioga a Yogaia"></div>
+          <div class="text-panel">
+            <span class="eyebrow reveal">La pràctica</span>
+            <h2 id="practica-title" class="reveal reveal-delay-1">
+              Una base de Hatha Raja Ioga que es desplega en diferents ritmes.
+            </h2>
+            <p class="reveal reveal-delay-2">A Yogaia compartim una pràctica amb base en el Hatha Raja Ioga, que integra cos, respiració i atenció.</p>
+            <p class="reveal reveal-delay-3">Les sessions combinen treball físic i energètic, amb espai per a l'escolta i l'ajust personal. S'ofereixen variacions de les postures perquè cada persona pugui adaptar la pràctica al seu moment i avançar amb seguretat.</p>
+            <p class="reveal reveal-delay-4">Aquesta base es desplega en formats com el Vinyasa, el Yin Ioga, la meditació i el Yoga Nidra. Una proposta rigorosa i accessible, que permet aprofundir sense pressa.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- L'ESPAI -->
+      <section id="espai" aria-labelledby="espai-title">
+        <div class="container split">
+          <div class="text-panel">
+            <span class="eyebrow reveal">L'espai</span>
+            <h2 id="espai-title" class="reveal reveal-delay-1">
+              Un lloc pensat per acollir la pràctica amb amplitud i calma.
+            </h2>
+            <p class="reveal reveal-delay-2">Ens trobaràs al cor de l'Eixample de Barcelona, en un espai de més de 400 m² pensat per acollir la pràctica amb amplitud.</p>
+            <p class="reveal reveal-delay-3">La sala principal, de 150 m², s'organitza en forma de L al voltant d'un jardí interior. Aquesta disposició crea una presència constant de la natura durant la pràctica, aportant llum, silenci i una sensació de recolliment molt valorada.</p>
+            <p class="reveal reveal-delay-4">L'espai disposa també d'una sala de 24 m² per a grups reduïts, entrada diàfana amb grades, petita botiga i vestidors amb dutxes.</p>
+          </div>
+          <div class="image-panel space"
+               role="img"
+               aria-label="La sala principal de Yogaia amb el jardí interior"></div>
+        </div>
+      </section>
+
+      <!-- L'EQUIP -->
+      <section id="equip" aria-labelledby="equip-title">
+        <div class="container split">
+          <div class="image-panel team"
+               aria-label="El nostre equip de professors">
+            <div class="portrait-grid" aria-hidden="true">
+              <div class="portrait"></div>
+              <div class="portrait"></div>
+              <div class="portrait"></div>
+            </div>
+          </div>
+          <div class="text-panel">
+            <span class="eyebrow reveal">L'equip</span>
+            <h2 id="equip-title" class="reveal reveal-delay-1">
+              Trajectòria sòlida, precisió i respecte pel ritme de cada persona.
+            </h2>
+            <p class="reveal reveal-delay-2">Un equip de professionals amb una trajectòria sòlida en la pràctica i l'ensenyament del ioga.</p>
+            <p class="reveal reveal-delay-3">Acompanyem cada procés amb atenció, precisió i respecte pel ritme de cada persona, sigui quin sigui el punt de partida.</p>
+            <a class="btn btn-secondary reveal reveal-delay-4" href="#contacte">Conèixer l'equip</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section id="experiencies" aria-labelledby="exp-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <span class="eyebrow">Experiències</span>
+              <h2 id="exp-title">Veus breus, reals i properes.</h2>
+            </div>
+          </div>
+          <div class="testimonial-grid">
+            <article class="testimonial reveal reveal-delay-1">
+              <blockquote>
+                "Un espai acollidor i una pràctica molt ben guiada. S'hi respira calma des del primer moment."
+              </blockquote>
+            </article>
+            <article class="testimonial reveal reveal-delay-2">
+              <blockquote>
+                "Classes cuidades, amb rigor i molta sensibilitat. Un lloc on tornar."
+              </blockquote>
+            </article>
+            <article class="testimonial reveal reveal-delay-3">
+              <blockquote>
+                "Yogaia és un espai on sentir-te acompanyat i aprofundir de veritat en la pràctica."
+              </blockquote>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA FINAL -->
+      <section id="contacte" aria-labelledby="cta-title">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div>
+              <span class="eyebrow">Comença ara</span>
+              <h2 id="cta-title">Un lloc on respirar, moure't i trobar el teu moment.</h2>
+              <p>Si ho sents, pots trobar el teu lloc aquí. Sense experiència prèvia. Tots els nivells benvinguts.</p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="#horaris">Veure horaris</a>
+              <a class="btn btn-secondary" href="#horaris">Reservar una classe</a>
+              <a class="btn btn-secondary" href="mailto:info@yogaia.org">Contactar</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ─── FOOTER ────────────────────────────────────────────── -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <img class="footer-logo"
+             src="logoYogaia-negre-transparent-600x600.png"
+             alt="Yogaia BCN"
+             height="40">
+        <nav class="footer-links" aria-label="Enllaços del peu de pàgina">
+          <a href="#horaris">Horaris</a>
+          <a href="#contacte">Tarifes</a>
+          <a href="#contacte">Inicia't</a>
+          <a href="#practica">Pràctica</a>
+          <a href="#contacte">Formacions</a>
+          <a href="#contacte">Contacte</a>
+          <a href="#contacte">Avís legal</a>
+        </nav>
+        <p class="footer-copy">
+          © 2026 Yogaia BCN · C/ Eixample, Barcelona
+        </p>
+      </div>
+    </footer>
+  </div><!-- /scroll-layer -->
+
+  <!-- Mobile overlay + drawer -->
+  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+  <aside class="mobile-drawer"
+         id="mobileDrawer"
+         aria-hidden="true"
+         aria-label="Menú de navegació mòbil">
+    <button class="mobile-drawer-close"
+            id="mobileDrawerClose"
+            type="button"
+            aria-label="Tancar menú">✕</button>
+    <nav class="mobile-nav" aria-label="Navegació mòbil">
+      <a href="#horaris">Horaris</a>
+      <a href="#contacte">Tarifes</a>
+      <a href="#contacte">Inicia't</a>
+      <a href="#practica">Pràctica</a>
+      <a href="#contacte">Formacions</a>
+      <a href="#contacte">Tallers</a>
+      <a href="#contacte">Botiga</a>
+    </nav>
+    <div class="mobile-drawer-bottom">
+      <a class="header-cta" href="#horaris">Veure horaris</a>
+    </div>
+  </aside>
+
+  <script src="index-v2.js" defer></script>
+</body>
+</html>
