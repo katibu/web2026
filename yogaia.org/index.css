@@ -485,7 +485,7 @@ section[id] {
   align-items: stretch;
   background:
     linear-gradient(180deg, rgba(38, 40, 33, 0.18), rgba(38, 40, 33, 0.42)),
-    url("practica-ioga-yogaia-barcelona.png") center bottom / cover no-repeat;
+    url("sala-ioga-barcelona.png") center bottom / cover no-repeat;
 }
 
 .hero::before {
